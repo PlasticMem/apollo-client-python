@@ -51,11 +51,14 @@ def get_value_from_dict(namespace_cache, key):
 
 
 def init_ip():
+    s = None
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('8.8.8.8', 53))
         ip = s.getsockname()[0]
         return ip
+    except Exception:
+        return ""
     finally:
-        s.close()
-    return ""
+        if s:
+            s.close()

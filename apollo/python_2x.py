@@ -9,7 +9,9 @@ import urllib2
 from urllib import urlencode
 
 
-def http_request(url, timeout, headers={}):
+def http_request(url, timeout, headers=None):
+    if headers is None:
+        headers = {}
     try:
         request = urllib2.Request(url, headers=headers)
         res = urllib2.urlopen(request, timeout=timeout)

@@ -11,7 +11,9 @@ from urllib.error import HTTPError
 from urllib import parse
 
 
-def http_request(url, timeout, headers={}):
+def http_request(url, timeout, headers=None):
+    if headers is None:
+        headers = {}
     try:
         request = urllib.request.Request(url, headers=headers)
         res = urllib.request.urlopen(request, timeout=timeout)
